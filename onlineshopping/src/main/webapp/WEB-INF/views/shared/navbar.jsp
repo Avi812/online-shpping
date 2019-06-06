@@ -8,12 +8,9 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto">
-				<!-- <li class="nav-item active"><a class="nav-link" href="#">Home
-						<span class="sr-only">(current)</span>
-				</a></li> -->
 				<li id="about" class="nav-item"><a class="nav-link" href="${contextRoot}/about">About</a></li>
-				<li id="productList" class="nav-item"><a class="nav-link" href="${contextRoot}/productList">View Products</a></li>
 				<li id="contact" class="nav-item"><a class="nav-link" href="${contextRoot}/contact">Contact</a></li>
+				<li id="listProducts" class="nav-item"><a class="nav-link" href="${contextRoot}/show/all/products">View Products</a></li>
 			</ul>
 		</div>
 	</div>
