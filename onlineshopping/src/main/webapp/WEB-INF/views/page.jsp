@@ -5,6 +5,7 @@
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
+<spring:url var="images" value="/resources/images" />
 <spring:url var="vendorcss" value="/resources/vendor/bootstrap/css" />
 <spring:url var="vendorjq" value="/resources/vendor/jquery" />
 <spring:url var="vendorjs" value="/resources/vendor/bootstrap/js" />
@@ -19,9 +20,12 @@
 <title>Online Shopping - ${title}</title>
 <script>
 	window.menu = '${title}';
+	window.contextRoot = '${contextRoot}';
 </script>
 <!-- Bootstrap Readable Theme CSS -->
 <link href="${css}/bootstrap-readable-theme.css" rel="stylesheet">
+<!-- Bootstrap DataTables -->
+<link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
 <!-- Bootstrap core CSS -->
 <link href="${vendorcss}/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
@@ -43,6 +47,10 @@
 		<c:if test="${userClicksAllProducts == true or userClicksCategoryProducts == true}">
 			<%@include file="listProducts.jsp"%>
 		</c:if>
+		<!-- Loads only when user clicks show single Product -->
+		<c:if test="${userClicksShowProduct == true}">
+			<%@include file="singleProduct.jsp"%>
+		</c:if>
 		<!-- Loads only when user clicks Contact -->
 		<c:if test="${userClicksContact == true}">
 			<%@include file="contact.jsp"%>
@@ -57,6 +65,10 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="${vendorjq}/jquery.min.js"></script>
 	<script src="${vendorjs}/bootstrap.bundle.min.js"></script>
+	<!-- DataTable Plugin -->
+	<script src="${js}/jquery.dataTables.js"></script>
+	<!-- DataTable BootStrap Script -->
+	<script src="${js}/dataTables.bootstrap.js"></script>
 	<!-- Self coded Javascript -->
 	<script src="${js}/myapp.js"></script>
 </body>
