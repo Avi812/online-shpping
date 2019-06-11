@@ -1,17 +1,21 @@
 package net.kzn.onlineshopping.controller;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import net.kzn.shoppingbackend.dao.CategoryDAO;
-import net.kzn.shoppingbackend.dao.ProductDAO;
-import net.kzn.shoppingbackend.dto.Category;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import net.kzn.shoppingbackend.dto.Product;
+import net.kzn.shoppingbackend.dto.Category;
+import net.kzn.shoppingbackend.dao.ProductDAO;
+import net.kzn.shoppingbackend.dao.CategoryDAO;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import net.kzn.onlineshopping.exception.ProductNotFoundException;
 
 @Controller
 public class PageController {
+	private static final Logger logger = LoggerFactory.getLogger(PageController.class);
 	@Autowired
 	private CategoryDAO categoryDAO;
 	@Autowired
@@ -21,6 +25,8 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("greeting", "Welcome to the world of Spring MVC!!!");
 		mv.addObject("title", "Home");
+		logger.info("Logger present inside page controller index method - INFO");
+		logger.debug("Logger present inside page controller index method - DEBUG");
 		//Passing the list of categories
 		mv.addObject("categories", categoryDAO.list());
 		mv.addObject("userClicksHome", true);
@@ -67,9 +73,10 @@ public class PageController {
 	}
 	//Code to view a single category product
 	@RequestMapping(value= "/show/{id}/product")
-	public ModelAndView showSingleProduct(@PathVariable int id) {
+	public ModelAndView showSingleProduct(@PathVariable int id) throws ProductNotFoundException {
 		ModelAndView mv = new ModelAndView("page");
 		Product product = productDAO.get(id);
+		if(product == null) throw new ProductNotFoundException();
 		//Code to update the view count
 		product.setViews(product.getViews() + 1);
 		productDAO.update(product);
