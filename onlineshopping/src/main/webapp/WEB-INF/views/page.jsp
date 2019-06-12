@@ -43,13 +43,17 @@
 		<c:if test="${userClicksAbout == true}">
 			<%@include file="about.jsp"%>
 		</c:if>
-		<!-- Loads only when user clicks All Products -->
+		<!-- Loads only when user clicks View Products -->
 		<c:if test="${userClicksAllProducts == true or userClicksCategoryProducts == true}">
 			<%@include file="listProducts.jsp"%>
 		</c:if>
 		<!-- Loads only when user clicks show single Product -->
 		<c:if test="${userClicksShowProduct == true}">
 			<%@include file="singleProduct.jsp"%>
+		</c:if>
+		<!-- Loads only when user clicks Manage Products -->
+		<c:if test="${userClicksManageProducts == true}">
+			<%@include file="manageProducts.jsp"%>
 		</c:if>
 		<!-- Loads only when user clicks Contact -->
 		<c:if test="${userClicksContact == true}">

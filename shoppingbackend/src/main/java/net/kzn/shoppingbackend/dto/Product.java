@@ -1,21 +1,30 @@
 package net.kzn.shoppingbackend.dto;
 import java.util.UUID;
 import javax.persistence.Id;
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Column;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
-@Entity
+@Entity @SuppressWarnings("deprecation")
 public class Product {
 	//Private fields
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String code, name, brand;
+	private String code;
+	@NotBlank(message="Please enter the Name of the Product!")
+	private String name;
+	@NotBlank(message="Please enter the Name of the Brand!")
+	private String brand;
 	@JsonIgnore
+	@NotBlank(message="Please enter the description of the Product!")
 	private String description;
-	@Column(name="unit_price")
+	@Column(name="unit_price") @Min(value=1, message="Price can't be less than 1")
 	private double unitPrice;
 	@JsonIgnore
 	@Column(name="is_active")
@@ -26,6 +35,8 @@ public class Product {
 	@Column(name="supplier_id")
 	private int supplierId;
 	private int quantity, purchases, views;
+	@Transient
+	private MultipartFile file;
 	//Default Constructor
 	public Product() {
 		this.code = UUID.randomUUID().toString().substring(26).toUpperCase();
@@ -102,5 +113,11 @@ public class Product {
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
 	}
 }

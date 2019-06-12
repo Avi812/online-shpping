@@ -7,6 +7,9 @@ $(function() {
 	case 'View Products':
 		$('#listProducts').addClass('active');
 		break;
+	case 'Manage Products':
+		$('#manageProducts').addClass('active');
+		break;
 	case 'Contact Us':
 		$('#contact').addClass('active');
 		break;
@@ -77,5 +80,12 @@ $(function() {
 				}
 			]
 		});
+	}
+	//Dismissing the alert after 3 seconds
+	var $alert = $('.alert');
+	if($alert.length) {
+		setTimeout(function() {
+			$alert.fadeOut('slow');
+		}, 3000);
 	}
 });
