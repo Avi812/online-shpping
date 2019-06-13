@@ -26,7 +26,7 @@ public class Product {
 	private String description;
 	@Column(name="unit_price") @Min(value=1, message="Price can't be less than 1")
 	private double unitPrice;
-	@JsonIgnore
+	//@JsonIgnore
 	@Column(name="is_active")
 	private boolean active;
 	@Column(name="category_id")

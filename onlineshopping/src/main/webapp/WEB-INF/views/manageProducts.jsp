@@ -16,10 +16,8 @@
 				</div>
 				<div class="panel-body">
 					<!-- FORM ELEMENTS -->
-					<sf:form class="form-horizontal" modelAttribute="product"
-					    action="${contextRoot}/manage/products"
-					    enctype="multipart/form-data"
-					    method="POST">
+					<sf:form class="form-horizontal" modelAttribute="product" action="${contextRoot}/manage/products"
+					    enctype="multipart/form-data" method="POST">
 					     <div class="form-group">
 					         <label class="control-label col-md-4" for="name">Enter Product Name: </label>
 					         <div class="col-md-8">
@@ -70,6 +68,12 @@
 					                 items="${categories}"
 					                 itemLabel="name"
 					                 itemValue="id" />
+					             <c:if test="${product.id == 0}">
+					                 <div class="text-right">
+					                     <br/>
+					                     <button type="button" data-toggle="modal" data-target="#myCategoryModal" class="btn btn-warning btn-xs">Add Category</button>
+					                 </div>
+					             </c:if>
 					         </div>
 					     </div>
 					     <div class="form-group">
@@ -89,4 +93,68 @@
 			</div>
 		</div>
 	</div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>Available Products</h3>
+            <hr/>
+        </div>
+        <div class="col-xs-12">
+            <div style="overflow:auto;">
+                <!-- Product table for Admin -->
+				<table id="productsTable" class="table table-condensed table-bordered">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>&#160;</th>
+							<th>Name</th>
+							<th>Brand</th>
+							<th>Qty. Avail</th>
+							<th>Unit Price</th>
+							<th>Activate</th>
+							<th>Edit</th>
+						</tr>
+					</thead>
+					<tfoot>
+						<tr>
+							<th>Id</th>
+							<th>&#160;</th>
+							<th>Name</th>
+							<th>Brand</th>
+							<th>Qty. Avail</th>
+							<th>Unit Price</th>
+							<th>Activate</th>
+							<th>Edit</th>
+						</tr>
+					</tfoot>
+				</table>
+			</div>
+        </div>
+    </div>
+    <div class="modal fade" id="myCategoryModal" role="dialog" tabindex="-1">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    <h4 class="modal-title">Add new Category</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- Category Form -->
+                    <sf:form id="categoryForm" modelAttribute="category" action="${contextRoot}/manage/category" method="POST" class="form-horizontal">
+                        <div class="form-group">
+					         <label class="control-label col-md-4" for="category_name">Category Name: </label>
+					         <div class="col-md-8"><sf:input type="text" id="category_name" path="name" class="form-control"/></div>
+					     </div>
+                        <div class="form-group">
+					         <label class="control-label col-md-4" for="category_description">Category Description: </label>
+					         <div class="col-md-8"><sf:textarea cols="" rows="" id="category_description" path="description" class="form-control"/></div>
+					     </div>
+                         <div class="form-group">
+					         <div class="control-md-offset-4 col-md-8"><input type="submit" value="Add Category" class="btn btn-primary"/></div>
+					     </div>
+                    </sf:form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
