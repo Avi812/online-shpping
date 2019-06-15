@@ -15,9 +15,9 @@ public class Cart {
 	@JoinColumn(name="uid")
 	private User user;
 	@Column(name="grand_total")
-	private String grandTotal;
+	private double grandTotal;
 	@Column(name="cart_lines")
-	private String cartLines;
+	private int cartLines;
 	//Getters and Setters
 	public int getId() {
 		return id;
@@ -31,21 +31,21 @@ public class Cart {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public String getGrandTotal() {
+	public double getGrandTotal() {
 		return grandTotal;
 	}
-	public void setGrandTotal(String grandTotal) {
+	public void setGrandTotal(double grandTotal) {
 		this.grandTotal = grandTotal;
 	}
-	public String getCartLines() {
+	public int getCartLines() {
 		return cartLines;
 	}
-	public void setCartLines(String cartLines) {
+	public void setCartLines(int cartLines) {
 		this.cartLines = cartLines;
 	}
 	//toString() for logging and debugging facility
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", user=" + user + ", grandTotal=" + grandTotal + ", cartLines=" + cartLines + "]";
+		return "Cart [id=" + id + ", grandTotal=" + grandTotal + ", cartLines=" + cartLines + "]";
 	}
 }

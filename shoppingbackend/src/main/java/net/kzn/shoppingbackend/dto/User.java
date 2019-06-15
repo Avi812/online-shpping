@@ -8,8 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
-@Entity
-@Table(name="USER_DETAIL")
+@Entity @Table(name="USER_DETAIL")
 public class User {
 	//Private fields for User
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)

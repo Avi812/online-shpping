@@ -2,6 +2,7 @@ package net.kzn.shoppingbackend.dto;
 import javax.persistence.Id;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -9,8 +10,8 @@ import javax.persistence.GenerationType;
 public class Address {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name="user_id")
-	private int userId;
+	@ManyToOne
+	private User user;
 	@Column(name="address_line_one")
 	private String addressLineOne;
 	@Column(name="address_line_two")
@@ -26,11 +27,11 @@ public class Address {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(int i) {
-		this.userId = i;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public String getAddressLineOne() {
 		return addressLineOne;
@@ -83,8 +84,8 @@ public class Address {
 	//toString() for logging and debugging facility
 	@Override
 	public String toString() {
-		return "Address [id=" + id + ", userId=" + userId + ", addressLineOne=" + addressLineOne + ", addressLineTwo="
-				+ addressLineTwo + ", city=" + city + ", state=" + state + ", country=" + country + ", postalCode="
-				+ postalCode + ", shipping=" + shipping + ", billing=" + billing + "]";
+		return "Address [id=" + id + ", addressLineOne=" + addressLineOne + ", addressLineTwo=" + addressLineTwo
+				+ ", city=" + city + ", state=" + state + ", country=" + country + ", postalCode=" + postalCode
+				+ ", shipping=" + shipping + ", billing=" + billing + "]";
 	}
 }
