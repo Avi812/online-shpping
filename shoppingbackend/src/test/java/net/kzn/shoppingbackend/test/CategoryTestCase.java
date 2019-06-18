@@ -83,11 +83,11 @@ public class CategoryTestCase {
 		category = categoryDAO.get(4);
 		category.setName("Male Stuffs");
 		category.setDescription("Male Stuffs Description");		
-		assertEquals("Data from category table is successfully fetched!", "Male Stuffs", category.getName());
+		assertEquals("Data from category table is successfully fetched!", "Male Stuffs", categoryDAO.update(category));
 		
 		//Code for delete operation	
-		category = categoryDAO.get(5);
-		assertEquals("Data for category table is successfully deleted!", true, categoryDAO.delete(category));
+//		category = categoryDAO.get(5);
+//		assertEquals("Data for category table is successfully deleted!", true, categoryDAO.delete(category));
 		
 		//Code for fetching all the records from the table	
 		assertEquals("Data for list of categories from the table is successfully fetched!", 3, categoryDAO.list().size());

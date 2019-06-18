@@ -96,4 +96,11 @@ public class PageController {
 		mv.addObject("greeting", greeting);
 		return mv;
 	}
+	/* Having similar mapping to our flow Id */
+	@RequestMapping(value= "/register")
+	public ModelAndView register() {
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Registration Page");
+		return mv;
+	}
 }

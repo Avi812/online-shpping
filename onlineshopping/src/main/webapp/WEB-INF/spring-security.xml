@@ -1,0 +1,32 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/security
+        https://www.springframework.org/schema/security/spring-security.xsd">
+    <context:component-scan base-package="net.kzn.shoppingbackend" />
+	<http>
+		<intercept-url pattern="/**" access="hasAuthority('USER')" />
+		<form-login />
+		<logout />
+	</http>
+	<authentication-manager>
+		<authentication-provider>
+			<jdbc-user-service data-source-ref="dataSource"
+			    users-by-username-query="select email, password, enabled from user_detail where email = ?"
+			    authorities-by-username-query="select email, role from user_detail where email = ?" />
+			<!-- <user-service>
+				Password is prefixed with {noop} to indicate to DelegatingPasswordEncoder 
+					that NoOpPasswordEncoder should be used. This is not safe for production, 
+					but makes reading in samples easier. Normally passwords should be hashed 
+					using BCrypt
+				<user name="Abhinav" password="@|te$t180" authorities="USER, ADMIN" />
+				<user name="bob" password="{noop}bobspassword" authorities="ROLE_USER" />
+			</user-service> -->
+		</authentication-provider>
+	</authentication-manager>
+</beans:beans>

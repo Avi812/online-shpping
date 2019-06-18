@@ -13,6 +13,10 @@
 				<li id="listProducts" class="nav-item"><a class="nav-link" href="${contextRoot}/show/all/products">View Products</a></li>
 				<li id="manageProducts" class="nav-item"><a class="nav-link" href="${contextRoot}/manage/products">Manage Products</a></li>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li id="register"><a href="${contextRoot}/register">Sign Up</a></li>
+				<li id="login"><a href="${contextRoot}/login">Login</a></li>
+			</ul>
 		</div>
 	</div>
 </nav>
